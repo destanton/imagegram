@@ -3,15 +3,21 @@
 {% block content %}
 <div class="">
   <button type="button" class="btn btn-default"><a href="{% url 'image_list_view' %}">Back</a></button>
+
 </div>
 
 {% for post in image %}
+
 <a href="{% url 'image_update_view' post.id %}">
   <img src="{{post.image_url}}" alt="Picture Not Found" />
 </a>
+<div class="">
+  <a href="{% url 'image_comment_view' post.id %}">Comment</a>
+</div>
+
 {% endfor %}
 <div class="container-fluid">
-  {% for post in comment %} <br>
+  {% for post in object.get_comment %} <br>
   {{ post.comment }} {{ post.user }} {{ post.created_time }}
 
   {% endfor %}

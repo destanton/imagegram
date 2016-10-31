@@ -32,8 +32,8 @@ class ImageDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["image"] = Image.objects.all()
-        context["comment"] = Comment.objects.all()
+        context["image"] = Image.objects.filter(id=self.kwargs['pk'])
+        # context["comment"] = Comment.objects.all()
         return context
 
 
@@ -52,7 +52,7 @@ class ImageDeleteView(DeleteView):
 class CommentCreateView(CreateView):
     model = Comment
     fields = ('comment',)
-    success_url = reverse_lazy('image_list_view')
+    # success_url = reverse_lazy('image_list_view')
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -60,4 +60,5 @@ class CommentCreateView(CreateView):
         instance.image = Image.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
-        
+    def get_success_url(self, **kwargs):
+        return reverse_lazy('image_detail_view', args=[int(self.kwargs['pk'])])

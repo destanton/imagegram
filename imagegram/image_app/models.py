@@ -31,6 +31,10 @@ class Image(models.Model):
     class Meta:
         ordering = ("created_time", )
 
+    @property
+    def get_comment(self):
+        return Comment.objects.filter(image=self)
+
 
 class Profile(models.Model):
     user = models.OneToOneField('auth.User')
