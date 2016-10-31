@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <form class="" action="" method="post">
+    {% csrf_token %}
+    <p>
+      You are about to delete this post. Are you sure?
+      <input type="submit" name="" value="Yes">
+      <button type="button" name="button"><a href="{% url 'image_list_view' %}">No</a></button>
+    </p>
+  </form>
+
+
+{% endblock %}

@@ -19,6 +19,12 @@ class Image(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
     picture = models.FileField()
 
+    @property
+    def image_url(self):
+        if self.picture:
+            return self.picture.url
+        return 'http://www.metrovancouver.org/services/parks/reservable-facilities/FacilityPhotos/no-picture.gif'
+
     def __str__(self):
         return self.title
 
@@ -31,3 +37,11 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class Comment(models.Model):
+    user = models.ForeignKey('auth.User')
+    image = models.ForeignKey(Image)
+    created_time = models.DateTimeField(auto_now_add=True)
+    modified_time = models.DateTimeField(auto_now=True)
+    comment = models.CharField(max_length=255)

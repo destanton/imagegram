@@ -2,8 +2,20 @@
 
 {% block content %}
  {% for image in object_list %}
-
- {{ image.title }}
+ <div class="">
+   <button type="button" class="btn btn-default"><a href="{% url 'image_delete_view' image.id %}">Delete Post</a></button>
+ </div>
+ <div class="">
+   <a href="{% url 'image_detail_view' image.id %}">
+     <img src="{{image.image_url}}" alt="Picture Not Found" />
+   </a>
+ </div>
+ <div class="">
+   {{ image.title }}
+ </div>
+ <div class="">
+   {{ image.description }}
+ </div>
 
  {% endfor %}
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="">
+  <button type="button" class="btn btn-default"><a href="{% url 'image_list_view' %}">Back</a></button>
+</div>
+
+{% for post in image %}
+<a href="{% url 'image_update_view' post.id %}">
+  <img src="{{post.image_url}}" alt="Picture Not Found" />
+</a>
+{% endfor %}
+<div class="container-fluid">
+  {% for post in comment %} <br>
+  {{ post.comment }} {{ post.user }} {{ post.created_time }}
+
+  {% endfor %}
+</div>
+
+{% endblock %}
