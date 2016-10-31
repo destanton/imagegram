@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ {% for image in object_list %}
+
+ {{ image.title }}
+
+ {% endfor %}
+{% endblock %}
