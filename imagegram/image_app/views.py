@@ -10,7 +10,7 @@ from django.shortcuts import render
 
 class ImageListView(ListView):
     model = Image
-    paginate_by = 3
+    paginate_by = 6
     # def listing(request):
     #     image_list = Image.objects.all()
     #     paginator = Paginator(image_list, 4)

@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="container-fluid">
+  <div class="col-md-3 col-md-offset-5">
   <form class="" action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" name="" value="Save">
   </form>
-
+</div>
+  </div>
 {% endblock %}

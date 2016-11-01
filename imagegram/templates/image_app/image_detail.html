@@ -30,7 +30,7 @@
           </div>
           <div class="panel-body">
           {% for post in object.get_comment %} <hr>
-          {{ post.comment }} {{ post.user }} {{ post.created_time }}
+          {{ post.comment }} | {{ post.user }} | {{ post.created_time }}
           {% endfor %}
           </div>
       </div>
