@@ -4,7 +4,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-        <button type="button" class="btn btn-default btn-xs"><a href="{% url 'image_list_view' %}">Back</a></button>
+        <button type="button" class="btn btn-info btn-xs"><a href="{% url 'image_list_view' %}">Back</a></button>
+    {% if object.user == request.user %}
+    <button type="button" class="btn btn-default btn-xs pull-right"><a href="{% url 'image_update_view' object.id %}">Update Post</a></button>
+    <button type="button" class="btn btn-default btn-xs pull-right"><a href="{% url 'image_delete_view' object.id %}">Delete Post</a></button>
+    {% endif %}
     </div>
   </div>
 </div>
@@ -14,9 +18,7 @@
     {% for post in image %}
     <div class="col-md-6 col-md-offset-3">
       <div class="thumbnail">
-        <a href="{% url 'image_update_view' post.id %}">
-          <img src="{{post.image_url}}" alt="Picture Not Found" />
-        </a>
+          <img src="{{post.image_url}}" alt="Picture Not Found"/>
         {% endfor %}
       </div>
     </div>

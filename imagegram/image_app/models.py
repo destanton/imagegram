@@ -41,6 +41,10 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+        
+    @property
+    def get_post(self):
+        return Image.objects.filter(user=self.user)
 
 
 class Comment(models.Model):
