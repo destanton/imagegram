@@ -4,10 +4,25 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import render
 
 
 class ImageListView(ListView):
     model = Image
+    paginate_by = 3
+    # def listing(request):
+    #     image_list = Image.objects.all()
+    #     paginator = Paginator(image_list, 4)
+    #
+    #     page = request.GET.get('page')
+    #     try:
+    #         images = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         images = paginator.page(1)
+    #     except EmptyPage:
+    #         images = paginator.page(paginator.num_pages)
+    #     return render(request, 'image_list.html', {'images': images})
 
 
 class UserCreateView(CreateView):
