@@ -29,7 +29,7 @@ class Image(models.Model):
         return self.title
 
     class Meta:
-        ordering = ("created_time", )
+        ordering = ("-created_time", )
 
     @property
     def get_comment(self):
@@ -41,7 +41,7 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
-        
+
     @property
     def get_post(self):
         return Image.objects.filter(user=self.user)
@@ -53,3 +53,6 @@ class Comment(models.Model):
     created_time = models.DateTimeField(auto_now_add=True)
     modified_time = models.DateTimeField(auto_now=True)
     comment = models.CharField(max_length=255)
+
+    class Meta:
+        ordering = ("-created_time", )
