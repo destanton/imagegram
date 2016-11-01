@@ -5,6 +5,11 @@
     <meta charset="utf-8">
     <title>ImageGram</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" media="screen" title="no title">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <style media="screen">
       body{
         background-color: lightgrey;
@@ -14,16 +19,28 @@
     </style>
   </head>
   <body>
-    <div class="container-fluid">
-      <a href="{% url 'image_list_view' %}">Home</a>
-      <a href="{% url 'user_create_view' %}">Create Account</a>
-      <a href="{% url 'image_create_view' %}">Create Image</a>
-      {% if not request.user.is_authenticated %}
-      <a href="{% url 'login' %}">Login</a>
-      {% else %}
-      <a href="{% url 'logout' %}?next={% url "image_list_view" %}">Logout</a>
-      {% endif %}
-      <h1 align="center">ImageGram</h1>
+      <div class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" name="button" data-toggle="dropdown">
+                Menu <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                <li><a href="{% url 'image_list_view' %}">Home</a></li>
+                <li><a href="{% url 'user_create_view' %}">Create Account</a></li>
+                <li><a href="{% url 'image_create_view' %}">Create Image</a></li>
+                {% if not request.user.is_authenticated %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                {% else %}
+                <li><a href="{% url 'logout' %}?next={% url "image_list_view" %}">Logout</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+          <h4 align="right">Welcome, <small>{{request.user}}</small></h4>
+        </div>
+        <h1 align="center">ImageGram</h1>
       <br>
     {% block content %}
 

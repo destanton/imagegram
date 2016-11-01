@@ -1,26 +1,39 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="">
-  <button type="button" class="btn btn-default"><a href="{% url 'image_list_view' %}">Back</a></button>
-
-</div>
-
-{% for post in image %}
-
-<a href="{% url 'image_update_view' post.id %}">
-  <img src="{{post.image_url}}" alt="Picture Not Found" />
-</a>
-<div class="">
-  <a href="{% url 'image_comment_view' post.id %}">Comment</a>
-</div>
-
-{% endfor %}
 <div class="container-fluid">
-  {% for post in object.get_comment %} <br>
-  {{ post.comment }} {{ post.user }} {{ post.created_time }}
-
-  {% endfor %}
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <button type="button" class="btn btn-default btn-xs"><a href="{% url 'image_list_view' %}">Back</a></button>
+    </div>
+  </div>
 </div>
 
+<div class="container-fluid">
+  <div class="row">
+    {% for post in image %}
+    <div class="col-md-6 col-md-offset-3">
+      <div class="thumbnail">
+        <a href="{% url 'image_update_view' post.id %}">
+          <img src="{{post.image_url}}" alt="Picture Not Found" />
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+          <div class="panel-heading">
+          <a href="{% url 'image_comment_view' object.id %}" class="btn btn-success" role="">Comment</a>
+          </div>
+          <div class="panel-body">
+          {% for post in object.get_comment %} <hr>
+          {{ post.comment }} {{ post.user }} {{ post.created_time }}
+          {% endfor %}
+          </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
